@@ -6,6 +6,7 @@ import NavBar from "./Component/NavBar";
 import Header from "./Component/Header";
 import Footer from "./Component/Footer";
 import AboutPage from "./Pages/About";
+import HomePage from "./Pages/HomePage";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -40,9 +41,9 @@ function App() {
 
         <Routes>
           <Route exact path="/" element={<Store addToCart={addToCart} />} />
-          <Route exact path="/about" element={<AboutPage />} /> {/* Route for AboutPage */}
+          <Route exact path="/about" element={<AboutPage />} />
+          <Route exact path="/home" element={<HomePage />} />
         </Routes>
-
 
         <Footer />
       </div>
