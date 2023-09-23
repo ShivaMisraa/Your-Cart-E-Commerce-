@@ -24,11 +24,12 @@ const NavBar = ({ cartItems, removeFromCart }) => {
     <>
       <Navbar bg="dark" data-bs-theme="dark" className="justify-content-center">
         <Container>
-          <Navbar.Brand href="#home">Your Cart</Navbar.Brand>
+          <Navbar.Brand as={Link}  to="/">Your Cart</Navbar.Brand>
           <Nav className="mx-auto">
             <Nav.Link as ={Link} to="/home">Home</Nav.Link>
             <Nav.Link as ={Link} to ="/">Store</Nav.Link>
             <Nav.Link as= {Link} to ="about">About</Nav.Link>
+            <Nav.Link as= {Link} to ="contact">Contact Us</Nav.Link>
           </Nav>
           <Button onClick={openCart}>
             Cart{' '}

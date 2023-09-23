@@ -1,0 +1,46 @@
+/* ContactForm.css */
+
+.container {
+    text-align: center;
+    margin: 2rem; /* Add margin to the container */
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    background-color: #caccdc; /* Subtle neon blue shade */
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+  }
+  
+  .input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 2px solid #00aaff; /* Adjust the border color */
+    border-radius: 5px;
+    outline: none;
+    transition: border 0.3s;
+  }
+  
+  .input:focus {
+    border: 2px solid #0077ff; /* Adjust the border color on focus */
+  }
+  
+  .button {
+    background-color: #5a99dd; /* Adjust the background color */
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .button:hover {
+    background-color: #becbe4; /* Adjust the background color on hover */
+  }
+  
