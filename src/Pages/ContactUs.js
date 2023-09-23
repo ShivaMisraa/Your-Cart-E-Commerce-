@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import "./ContactUs.css";
+// import backgroundImage from "https://media.istockphoto.com/id/1418045846/photo/email-phone-website-contact-us-website-banner-marketing.webp?b=1&s=170667a&w=0&k=20&c=Ln3XGXD1qDcQOu5igbrB7TY2_T-pOI2lGy0y-RHu87Y=";
 
 const ContactUs = () => {
   const nameRef = useRef();
@@ -42,7 +43,7 @@ const ContactUs = () => {
   }
 
   return (
-    <div className="container">
+    <div className="contact-us-container"> {/* Add a specific class or ID */}
       <form className="form" onSubmit={handleSubmit}>
         <h1>Contact Us</h1>
         <input

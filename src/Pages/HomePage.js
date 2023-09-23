@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./HomePage.css";
 const tourData = [
   {
     date: "JUL16",
@@ -41,49 +41,42 @@ const tourData = [
 
 function HomePage() {
   return (
-    <div style={{size:"50%"}}>
-      <header
-        style={{ backgroundColor: "grey", color: "white", padding: "1rem" }}
-      >
+    <div className="container-50">
+      <div className="home-page">
         
-        <br />
-        <div className="d-flex justify-content-center">
-          <button style={{ backgroundColor: "gray", color: "white", border: "none", padding: "10px 20px" }}>
-            Get Our Latest Album
-          </button>
-        </div>
-        <div className="d-flex justify-content-center mt-4">
-          <button style={{ backgroundColor: "gray", color: "white", border: "none", padding: "10px 20px", marginLeft: "1rem" }}>
-            Play
-          </button>
-        </div>
-      </header>
-      <div>
-        <h2>Tours</h2>
-        <table style={{ width: "100%" }}>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>City</th>
-              <th>Venue</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {tourData.map((tour) => (
-              <tr key={tour.date}>
-                <td>{tour.date}</td>
-                <td>{tour.city}</td>
-                <td>{tour.venue}</td>
-                <td>
-                  <button style={{ backgroundColor: "gray", color: "white", border: "none", padding: "5px 10px" }}>
-                    {tour.buttonLabel}
-                  </button>
-                </td>
+        <div>
+        <header className="header">
+          <h1>Tours</h1> 
+          <div className="button-container">
+            <div className="button-group">
+              <button className="header-button">Get Our Latest Album</button>
+              <button className="header-button">Play</button>
+            </div>
+          </div>
+        </header>
+          <table className="tour-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>City</th>
+                <th>Venue</th>
+                <th></th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {tourData.map((tour) => (
+                <tr key={tour.date}>
+                  <td>{tour.date}</td>
+                  <td>{tour.city}</td>
+                  <td>{tour.venue}</td>
+                  <td>
+                    <button className="tour-button">{tour.buttonLabel}</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

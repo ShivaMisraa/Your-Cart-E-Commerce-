@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Navbar, Nav, Button, Container } from 'react-bootstrap';
 import Cart from './Cart';
-import { Link } from 'react-router-dom';
-
-//code for navbarclear
+import { Link, useLocation } from 'react-router-dom';
 
 const NavBar = ({ cartItems, removeFromCart }) => {
   const [showCart, setShowCart] = useState(false);
+  const location = useLocation();
 
   const openCart = () => {
     setShowCart(true);
@@ -16,25 +15,26 @@ const NavBar = ({ cartItems, removeFromCart }) => {
     setShowCart(false);
   };
 
-
-  // Calculate the total quantity of items in the cart
-  const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+  // Define the inline style for the active NavLink
+  const activeLinkStyle = {
+    textDecoration: 'underline',
+  };
 
   return (
     <>
       <Navbar bg="dark" data-bs-theme="dark" className="justify-content-center">
         <Container>
-          <Navbar.Brand as={Link}  to="/">Your Cart</Navbar.Brand>
+          <Navbar.Brand as={Link} to="/">Your Cart</Navbar.Brand>
           <Nav className="mx-auto">
-            <Nav.Link as ={Link} to="/home">Home</Nav.Link>
-            <Nav.Link as ={Link} to ="/">Store</Nav.Link>
-            <Nav.Link as= {Link} to ="about">About</Nav.Link>
-            <Nav.Link as= {Link} to ="contact">Contact Us</Nav.Link>
+            <Nav.Link as={Link} to="/home" style={location.pathname === '/home' ? activeLinkStyle : {}}>Home</Nav.Link>
+            <Nav.Link as={Link} to="/" style={location.pathname === '/' ? activeLinkStyle : {}}>Store</Nav.Link>
+            <Nav.Link as={Link} to="/about" style={location.pathname === '/about' ? activeLinkStyle : {}}>About</Nav.Link>
+            <Nav.Link as={Link} to="/contact" style={location.pathname === '/contact' ? activeLinkStyle : {}}>Contact Us</Nav.Link>
           </Nav>
           <Button onClick={openCart}>
             Cart{' '}
-            {totalQuantity > 0 && (
-              <span className="badge badge-light ml-2">{totalQuantity}</span>
+            {cartItems.length > 0 && (
+              <span className="badge badge-light ml-2">{cartItems.length}</span>
             )}
           </Button>
         </Container>

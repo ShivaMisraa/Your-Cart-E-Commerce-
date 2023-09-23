@@ -1,36 +1,46 @@
-/* ContactForm.css */
+/* ContactUs.css */
 
-.container {
+.contact-us-container {
     text-align: center;
-    margin: 2rem; /* Add margin to the container */
+    margin: 2rem;
+    background-image: url("https://media.istockphoto.com/id/1418045846/photo/email-phone-website-contact-us-website-banner-marketing.webp?b=1&s=170667a&w=0&k=20&c=Ln3XGXD1qDcQOu5igbrB7TY2_T-pOI2lGy0y-RHu87Y=");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    background-color: #caccdc; /* Subtle neon blue shade */
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    max-width: 500px;
+    text-align: center; /* Center the form content */
   }
   
   .input {
     padding: 0.5rem;
     font-size: 1rem;
-    border: 2px solid #00aaff; /* Adjust the border color */
+    border: 2px solid #0077ff;
     border-radius: 5px;
     outline: none;
     transition: border 0.3s;
+    width: 100%;
+    margin-bottom: 1rem;
   }
   
   .input:focus {
-    border: 2px solid #0077ff; /* Adjust the border color on focus */
+    border: 2px solid #0055aa;
   }
   
   .button {
-    background-color: #5a99dd; /* Adjust the background color */
+    background-color: #0077ff;
     color: #fff;
     padding: 0.5rem 1rem;
     border: none;
@@ -38,9 +48,10 @@
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s;
+    width: 100%;
   }
   
   .button:hover {
-    background-color: #becbe4; /* Adjust the background color on hover */
+    background-color: #0055aa;
   }
   
