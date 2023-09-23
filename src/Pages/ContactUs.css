@@ -1,4 +1,4 @@
-/* ContactUs.css */
+
 
 .contact-us-container {
     text-align: center;
@@ -8,7 +8,7 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
-    height: 100vh;
+    height: 50vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,7 +21,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 80%;
     max-width: 500px;
-    text-align: center; /* Center the form content */
+    text-align: center; 
   }
   
   .input {

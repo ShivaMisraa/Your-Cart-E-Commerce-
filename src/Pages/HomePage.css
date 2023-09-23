@@ -1,72 +1,68 @@
-
 .container-50 {
-    width: 50%;
-    margin: 0 auto; 
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(58, 72, 178, 0.2); 
-    margin-top: 15px;
-    margin-bottom: 15px;
-  }
-  
-  
-  
-  .header {
-    background-color: rgb(255, 255, 255);
-    color: white;
-    padding: 1rem;
-    text-align: center; /* Center the content horizontally */
-  }
-  
-  .button-container {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .button-group {
-    text-align: center; 
-    margin-top: 1rem;
-  }
-  
-  .header-button {
-    background-color: rgb(164, 77, 77);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin: 0 1rem; 
-    text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: 1px;
-    transition: background-color 0.3s ease-in-out;
-  }
-  
-  .header-button:hover {
-    background-color: royalblue;
-    box-shadow: 0 0 10px royalblue;
-  }
-  
-  .tour-table {
-    width: 100%;
-  }
-  
-  th,
-  td {
-    padding: 10px;
-    text-align: left;
-  }
-  
-  .tour-button {
-    background-color: gray;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: 1px;
-    transition: background-color 0.3s ease-in-out;
-  }
-  
-  .tour-button:hover {
-    background-color: royalblue;
-    box-shadow: 0 0 5px royalblue;
-  }
-  
+  width: 50%;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(58, 72, 178, 0.2);
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.header {
+  background-color: rgb(255, 255, 255);
+  color: white;
+  padding: 1rem;
+  text-align: center; /* Center the content horizontally */
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.button-group {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.header-button {
+  background-color: rgb(164, 77, 77);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.header-button:hover {
+  background-color: royalblue;
+  box-shadow: 0 0 10px royalblue;
+}
+
+.tour-table {
+  width: 100%;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+}
+
+.tour-button {
+  background-color: gray;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.tour-button:hover {
+  background-color: royalblue;
+  box-shadow: 0 0 5px royalblue;
+}
