@@ -9,6 +9,7 @@ import AboutPage from "./Pages/About";
 import HomePage from "./Pages/HomePage";
 import ContactUs from "./Pages/ContactUs";
 import ProductDetails from "./Product Details/ProductDetails";
+import Login from "./Auth/Login";
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
           <Route exact path="/home" element={<HomePage />} />
           <Route exact path="/contact" element={<ContactUs />} />
           <Route path="/products/:productId" element={<ProductDetails />} />
+          <Route exact path="/login" element={<Login />} />
         </Routes>
 
         <Footer />
