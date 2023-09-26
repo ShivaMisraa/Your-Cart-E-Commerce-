@@ -14,7 +14,10 @@ export const AuthContextProvider = (props) => {
 
   const userIsLoggedIn = !!token; // !! this will change this in boolean value like truthy or falsy value
 
+  
+
   const logInHandler = (token) => {
+    
     setToken(token);
     localStorage.setItem("token", token);
     console.log("Token stored in localStorage:", token);

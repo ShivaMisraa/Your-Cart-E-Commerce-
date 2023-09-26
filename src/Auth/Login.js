@@ -1,8 +1,7 @@
-import React , {useState, useRef, useContext} from "react";
+import React, { useState, useRef, useContext } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../Store/auth-context";
-
 
 const Login = () => {
   const backgroundImageStyle = {
@@ -17,7 +16,7 @@ const Login = () => {
 
   const authCtx = useContext(AuthContext);
 
-  const navitage= useNavigate();
+  const navitage = useNavigate();
 
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
@@ -69,7 +68,7 @@ const Login = () => {
       .then((data) => {
         console.log(data.idToken);
         authCtx.login(data.idToken);
-        navitage('/');
+        navitage("/");
       })
       .catch((err) => {
         alert(err.message);
@@ -79,14 +78,24 @@ const Login = () => {
     <div style={backgroundImageStyle}>
       <Container
         style={{
-          backgroundColor: "#f8f9fa",
-          padding: "20px", 
+          backgroundColor: "rgba(248, 249, 250, 0.7)", 
+          padding: "20px",
           borderRadius: "10px",
           backdropFilter: "blur(5px)",
+          
         }}
       >
         <Form>
-          <p className="mb-4">Please Sing in/ Sign Up to access Store</p>
+          <p
+            className="mb-4"
+            style={{
+              color: "blue",
+              textShadow: "0 0 10px rgba(0, 0, 255, 0.8)",
+              fontWeight: 'bold',
+            }}
+          >
+            Please Sign-in/ Sign-Up to access Store
+          </p>
           <Form.Group controlId="email">
             <Form.Label>Email Id</Form.Label>
             <Form.Control
@@ -117,17 +126,17 @@ const Login = () => {
             {isLogin ? " Login" : " Create Account"}
           </Button>
           <div
-          onClick={switchAuthModeHandler}
-          variant="primary"
-          type="submit"
-          style={{
-            marginBottom: "15px ",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          {isLogin ? "Create Account" : "Login with existing account"}
-        </div>
+            onClick={switchAuthModeHandler}
+            variant="primary"
+            type="submit"
+            style={{
+              marginBottom: "15px",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            {isLogin ? "Create Account" : "Login with existing account"}
+          </div>
         </Form>
       </Container>
     </div>

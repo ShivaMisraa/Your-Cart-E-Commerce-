@@ -35,7 +35,6 @@ const NavBar = ({ cartItems, removeFromCart }) => {
             
             <Nav.Link as={Link} to="/" style={location.pathname === '/' ? activeLinkStyle : {}}>Store</Nav.Link>
             
-            
             <Nav.Link as={Link} to="/about" style={location.pathname === '/about' ? activeLinkStyle : {}}>About</Nav.Link>
             
             <Nav.Link as={Link} to="/login" style={location.pathname === '/login' ? activeLinkStyle : {}}>Log In</Nav.Link>

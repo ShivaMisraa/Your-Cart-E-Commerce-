@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Import BrowserRouter and Route
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom"; // Import BrowserRouter and Route
 import Store from "./Component/Store";
 import NavBar from "./Component/NavBar";
 import Header from "./Component/Header";
@@ -10,10 +15,15 @@ import HomePage from "./Pages/HomePage";
 import ContactUs from "./Pages/ContactUs";
 import ProductDetails from "./Product Details/ProductDetails";
 import Login from "./Auth/Login";
-
+import AuthContext from "./Store/auth-context";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const loginHandler = (token) => {
+    setIsLoggedIn(true);
+  };
 
   // Function to add an item to the cart
   const addToCart = (item) => {
@@ -40,19 +50,36 @@ function App() {
   return (
     <Router>
       <div>
-        <NavBar cartItems={cartItems} removeFromCart={removeFromCart} />
-        <Header />
+        <AuthContext.Provider
+          value={{
+            isLoggedIn: isLoggedIn,
+            login: loginHandler,
+          }}
+        >
+          <NavBar cartItems={cartItems} removeFromCart={removeFromCart} />
+          <Header />
 
-        <Routes>
-          <Route exact path="/" element={<Store addToCart={addToCart} />} />
-          <Route exact path="/about" element={<AboutPage />} />
-          <Route exact path="/home" element={<HomePage />} />
-          <Route exact path="/contact" element={<ContactUs />} />
-          <Route path="/products/:productId" element={<ProductDetails />} />
-          <Route exact path="/login" element={<Login />} />
-        </Routes>
+          <Routes>
+            <Route exact path="/login" element={<Login />} />
+            <Route exact path="/about" element={<AboutPage />} />
+            <Route exact path="/home" element={<HomePage />} />
+            <Route exact path="/contact" element={<ContactUs />} />
+            <Route path="/products/:productId" element={<ProductDetails />} />
 
-        <Footer />
+            <Route
+              path="/"
+              element={
+                isLoggedIn ? (
+                  <Store addToCart={addToCart} />
+                ) : (
+                  <Navigate to="/login" replace />
+                )
+              }
+            />
+          </Routes>
+
+          <Footer />
+        </AuthContext.Provider>
       </div>
     </Router>
   );
