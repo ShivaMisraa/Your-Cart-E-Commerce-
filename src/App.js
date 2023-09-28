@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
-} from "react-router-dom"; // Import BrowserRouter and Route
+} from "react-router-dom";
 import Store from "./Component/Store";
 import NavBar from "./Component/NavBar";
 import Header from "./Component/Header";
@@ -16,17 +16,30 @@ import ContactUs from "./Pages/ContactUs";
 import ProductDetails from "./Product Details/ProductDetails";
 import Login from "./Auth/Login";
 import AuthContext from "./Store/auth-context";
+import addToCartAPI, { getCartAPI } from "./Store/api";
+
+
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userUniqueId, setUserUniqueId] = useState("");
 
-  const loginHandler = (token) => {
+  const loginHandler = (token, userEmail) => {
+
+    console.log(userEmail)
     setIsLoggedIn(true);
+    
+    const userUniqueId = userEmail.replace(/[@.]/g, '');
+    setUserUniqueId(userUniqueId);
+    console.log(userUniqueId)
+
+    localStorage.setItem('email',userUniqueId)
+    localStorage.setItem('token',token)
   };
 
-  // Function to add an item to the cart
-  const addToCart = (item) => {
+  
+  const addToCart = async (item) => {
     const itemIndex = cartItems.findIndex(
       (cartItem) => cartItem.title === item.title
     );
@@ -38,14 +51,42 @@ function App() {
     } else {
       setCartItems([...cartItems, { ...item, quantity: 1 }]);
     }
+
+    try {
+      console.log(userUniqueId)
+      await addToCartAPI(userUniqueId, cartItems);
+    } catch (error) {
+      alert(error);
+    }
   };
 
-  // Function to remove an item from the cart
   const removeFromCart = (index) => {
     const updatedCart = [...cartItems];
     updatedCart.splice(index, 1);
     setCartItems(updatedCart);
-  };
+
+   };
+   useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    const storedUserEmail = localStorage.getItem("email");
+  
+    console.log("useEffect is called!", storedToken, storedUserEmail);
+  
+    if (isLoggedIn && storedToken && storedUserEmail) {
+      // Only fetch cart data if the user is logged in
+      try {
+        getCartAPI(storedUserEmail).then((cartData) => {
+          setCartItems(cartData);
+          console.log(cartData);
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }, [isLoggedIn]);
+  
+  
+
 
   return (
     <Router>
@@ -53,7 +94,7 @@ function App() {
         <AuthContext.Provider
           value={{
             isLoggedIn: isLoggedIn,
-            login: loginHandler,
+            login: loginHandler
           }}
         >
           <NavBar cartItems={cartItems} removeFromCart={removeFromCart} />

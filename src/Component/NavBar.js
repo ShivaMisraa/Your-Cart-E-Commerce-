@@ -1,15 +1,13 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Navbar, Nav, Button, Container } from 'react-bootstrap';
 import Cart from './Cart';
 import { Link, useLocation } from 'react-router-dom';
-import AuthContext from '../Store/auth-context';
+
+
 const NavBar = ({ cartItems, removeFromCart }) => {
   const [showCart, setShowCart] = useState(false);
   const location = useLocation();
 
-  const authCtx= useContext(AuthContext)
-  
-  const isLoggedIn = authCtx.isLoggedIn;
 
   const openCart = () => {
     setShowCart(true);
@@ -45,7 +43,7 @@ const NavBar = ({ cartItems, removeFromCart }) => {
           </Nav>
           <Button onClick={openCart}>
             Cart{' '}
-            {cartItems.length > 0 && (
+            {cartItems && cartItems.length > 0  && (
               <span className="badge badge-light ml-2">{cartItems.length}</span>
             )}
           </Button>

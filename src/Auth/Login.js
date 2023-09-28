@@ -22,7 +22,6 @@ const Login = () => {
   const passwordInputRef = useRef();
 
   const [isLogin, setIsLogin] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
@@ -34,7 +33,7 @@ const Login = () => {
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
 
-    setIsLoading(true);
+    
     let url;
     if (isLogin) {
       url =
@@ -55,7 +54,7 @@ const Login = () => {
       },
     })
       .then((res) => {
-        setIsLoading(false);
+        
         if (res.ok) {
           return res.json();
         } else {
@@ -67,7 +66,7 @@ const Login = () => {
       })
       .then((data) => {
         console.log(data.idToken);
-        authCtx.login(data.idToken);
+        authCtx.login(data.idToken, data.email);
         navitage("/");
       })
       .catch((err) => {
