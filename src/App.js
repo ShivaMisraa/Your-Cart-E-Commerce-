@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import "./App.css";
 import {
   BrowserRouter as Router,
@@ -13,12 +13,13 @@ import Footer from "./Component/Footer";
 import AboutPage from "./Pages/About";
 import HomePage from "./Pages/HomePage";
 import ContactUs from "./Pages/ContactUs";
-import ProductDetails from "./Product Details/ProductDetails";
+// import ProductDetails from "./Product Details/ProductDetails";
 import Login from "./Auth/Login";
 import AuthContext from "./Store/auth-context";
 import addToCartAPI, { getCartAPI } from "./Store/api";
 
-
+// use this as laz
+const ProductDetails = lazy(() => import("./Product Details/ProductDetails"));
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -26,19 +27,17 @@ function App() {
   const [userUniqueId, setUserUniqueId] = useState("");
 
   const loginHandler = (token, userEmail) => {
-
-    console.log(userEmail)
+    console.log(userEmail);
     setIsLoggedIn(true);
-    
-    const userUniqueId = userEmail.replace(/[@.]/g, '');
-    setUserUniqueId(userUniqueId);
-    console.log(userUniqueId)
 
-    localStorage.setItem('email',userUniqueId)
-    localStorage.setItem('token',token)
+    const userUniqueId = userEmail.replace(/[@.]/g, "");
+    setUserUniqueId(userUniqueId);
+    console.log(userUniqueId);
+
+    localStorage.setItem("email", userUniqueId);
+    localStorage.setItem("token", token);
   };
 
-  
   const addToCart = async (item) => {
     const itemIndex = cartItems.findIndex(
       (cartItem) => cartItem.title === item.title
@@ -53,7 +52,7 @@ function App() {
     }
 
     try {
-      console.log(userUniqueId)
+      console.log(userUniqueId);
       await addToCartAPI(userUniqueId, cartItems);
     } catch (error) {
       alert(error);
@@ -64,29 +63,25 @@ function App() {
     const updatedCart = [...cartItems];
     updatedCart.splice(index, 1);
     setCartItems(updatedCart);
-
-   };
-   useEffect(() => {
+  };
+  useEffect(() => {
     const storedToken = localStorage.getItem("token");
     const storedUserEmail = localStorage.getItem("email");
-  
-    console.log("useEffect is called!", storedToken, storedUserEmail);
-  
+
+    // console.log("useEffect is called!", storedToken, storedUserEmail);
+
     if (isLoggedIn && storedToken && storedUserEmail) {
       // Only fetch cart data if the user is logged in
       try {
         getCartAPI(storedUserEmail).then((cartData) => {
           setCartItems(cartData);
-          console.log(cartData);
+          // console.log(cartData);
         });
       } catch (error) {
-        console.error(error);
+        console.log(error);
       }
     }
   }, [isLoggedIn]);
-  
-  
-
 
   return (
     <Router>
@@ -94,7 +89,7 @@ function App() {
         <AuthContext.Provider
           value={{
             isLoggedIn: isLoggedIn,
-            login: loginHandler
+            login: loginHandler,
           }}
         >
           <NavBar cartItems={cartItems} removeFromCart={removeFromCart} />
@@ -105,8 +100,15 @@ function App() {
             <Route exact path="/about" element={<AboutPage />} />
             <Route exact path="/home" element={<HomePage />} />
             <Route exact path="/contact" element={<ContactUs />} />
-            <Route path="/products/:productId" element={<ProductDetails />} />
 
+            <Route
+              path="/products/:productId"
+              element={
+                <Suspense fallback={<p>Loading...</p>}>
+                  <ProductDetails />
+                </Suspense>
+              }
+            />
             <Route
               path="/"
               element={

@@ -20,7 +20,7 @@ const addToCartAPI = async (userUniqueId, cartData) => {
     throw error;
   }
 };
-export const getCartAPI = async () => {
+export const getCartAPI = async (userUniqueId) => {
   try {
     const response = await fetch(`${API_URL}`);
     if (!response.ok) {
@@ -28,9 +28,25 @@ export const getCartAPI = async () => {
     }
 
     const cartData = await response.json();
-    const allItems = cartData.reduce((items, cartEntry) => {
-      return items.concat(cartEntry.items || []);
-    }, []);
+
+    const itemMap = new Map();
+
+    cartData.forEach((cartEntry) => {
+      const items = cartEntry.items || [];
+      items.forEach((item) => {
+        const itemId = item.id; 
+        if (itemMap.has(itemId)) {
+          
+          itemMap.get(itemId).quantity += item.quantity;
+        } else {
+          
+          itemMap.set(itemId, { ...item });
+        }
+      });
+    });
+
+    
+    const allItems = Array.from(itemMap.values());
 
     return allItems;
   } catch (error) {
@@ -38,4 +54,5 @@ export const getCartAPI = async () => {
     throw error;
   }
 };
+
 export default addToCartAPI;

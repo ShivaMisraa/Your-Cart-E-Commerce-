@@ -5,6 +5,8 @@
   border-radius: 10px;
   background-size: cover;
   background-repeat: no-repeat;
+  
+  
 
     margin-top: 15px;
     margin-bottom: 15px;
@@ -13,6 +15,7 @@
 }
 
 .about-content{
+  
     text-align: center;
     margin: 2rem;
     background-size: cover;
@@ -36,16 +39,6 @@
   align-items: flex-start;
   margin: 20px;
 }
-
-.left-content {
-  flex: 1;
-  padding-right: 20px;
-}
-
-.right-content {
-  flex: 2;
-}
-
 
 
 .larger-text {

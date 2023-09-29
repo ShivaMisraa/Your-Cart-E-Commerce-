@@ -24,7 +24,7 @@ const NavBar = ({ cartItems, removeFromCart }) => {
 
   return (
     <>
-      <Navbar bg="dark" data-bs-theme="dark" className="justify-content-center" >
+      <Navbar bg="dark" data-bs-theme="dark" className="justify-content-center " >
         <Container>
           <Navbar.Brand as={Link} to="/">Your Cart</Navbar.Brand>
           <Nav className="mx-auto">

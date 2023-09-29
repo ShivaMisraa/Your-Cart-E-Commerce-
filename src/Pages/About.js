@@ -3,24 +3,26 @@ import "./AboutUs.css";
 import { Container } from "react-bootstrap";
 
 const AboutUsPage = () => {
+  const backgroundImage = {
+    backgroundImage: `url('https://img.freepik.com/premium-photo/simple-background-image-inviting-empty-workplace-featuring-white-desk-succulent_176841-12801.jpg?w=1380')`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    backgroundAttachment: 'fixed',
+  };
+
   return (
-    <div className="container">
-      <div className="about">
-        <div className="about-content">
-          <div className="left-content">
-            <img
-              src="https://www.pngmart.com/files/About-Us-PNG-Photos.png"
-              alt="About Us Image"
-              className="about-image"
-            />
-          </div>
+    <div className="container" style={backgroundImage}>
+      
+        
+         
           <div className="right-content">
             <Container className="about-container">
               <p className="larger-text">
-                Welcome to Your Cart, your one-stop destination for all your
+                Welcome to Your Cart,your one-stop destination for all your
                 shopping needs. We are more than just an online store; we are a
                 reflection of your style, your interests, and your lifestyle. At
-                Your Cart, we understand that shopping is not just a
+                 Your Cart, we understand that shopping is not just a
                 transaction; it's an experience.  Our dedicated team ensures that
                 every item we offer meets the highest standards of excellence.
                 We believe that shopping should be convenient, reliable, and
@@ -36,8 +38,8 @@ const AboutUsPage = () => {
               </p>
             </Container>
           </div>
-        </div>
-      </div>
+       
+      
     </div>
   );
 };
